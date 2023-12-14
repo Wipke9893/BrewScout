@@ -1,7 +1,7 @@
 <template>
     <div class="beer-slideshow">
       <transition name="fade" mode="out-in">
-        <h2 key="title-key">Featured Beers</h2>
+       
       </transition>
       <transition name="fade" mode="out-in">
         <router-link :to="'/breweryInfo/' + currentBeer.brew_id" v-if="currentBeer">

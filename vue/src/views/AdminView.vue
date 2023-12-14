@@ -1,13 +1,15 @@
 <template>
+<div class="page">
     <div>
         <header-view />
+        <div class="mainview">
         <div class="addBrewery">
             <h3>Add Brewery</h3>
             <form @submit.prevent="addBrewery"> <!-- Call addBrewery on form submission -->
-                <div>
+                <!-- <div>
                     <label for="breweryId">Brewery Id => </label>
-                    <input type="number" id="breweryId" v-model="brewery.brew_id" required>
-                </div>
+                    <input type="number" id="breweryId" v-model="brewery.brew_id">
+                </div> -->
                 <div>
                     <label for="userId">User Id => </label>
                     <input type="number" id="userId" v-model="brewery.user_id" required>
@@ -20,20 +22,25 @@
                     <button type="submit">Add Brewery</button>
                 </div>
             </form>
-            <div v-if="showMessage" class="completion-message">Brewery added successfully!</div>
+            <div class="completion-message" :class="{ 'show-message': showMessage }">
+                {{ messageText }}
+            </div>
         </div>
     </div>
+    
 
     <div class="RegUsers">
         <h3>All Registered Users</h3>
         <ul>
-            <li v-for="user in userList" :key="user.id" value="user">{{ user.username }}</li>
+            <li v-for="user in userList" :key="user.id" value="user">{{ user.username }} : {{ user.id }}</li>
         </ul>
     </div>
+</div>
 
-    <footer-view />
+
+        <FooterView />
+    </div>
 </template>
-
 <script>
 import HeaderView from './HeaderView.vue';
 import FooterView from './FooterView.vue';
@@ -59,31 +66,46 @@ export default {
                 image: ''
             },
             userList: [],
-            selectedUserId: "", // Add selectedUserId data property
+            selectedUserId: "",
+            messageText: '', // Add selectedUserId data property
             showMessage: false, // Add a data property to control the completion message
         };
     },
 
     methods: {
+        submitForm() {
+
+            // Call addBrewery method when the form is submitted
+            this.addBrewery();
+        },
+
         addBrewery() {
             brewService
                 .addBrewery(this.brewery)
                 .then((response) => {
                     if (response.status == 201) {
-                        // this.breweries = response.data;
+                        this.showCompletionMessage("Brewery added successfully!");
+                        // Show completion message on successful addition
                     }
                 })
                 .catch((error) => {
                     const response = error.response;
                     if (response.status === 401) {
-                        this.invalidCredentials = true;
+                        // Handle error scenarios as needed
+                        console.error("Error adding brewery:", error);
                     }
                 });
         },
 
-        showCompletionMessage() {
+        showCompletionMessage(message) {
             this.showMessage = true;
-        },
+            this.messageText = message;
+
+            // Hide the message after 3 seconds (adjust duration as needed)
+            setTimeout(() => {
+                this.showMessage = false;
+            }, 3000);
+        }
 
     },
     components: {
@@ -112,14 +134,34 @@ export default {
 </script>
 
 <style scoped>
+.page {
+    
+    background-image: url('../assets/img/homePage2.png');
+    background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
 .completion-message {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: green;
-    /* Change the color to your preference */
+    font-family: Arial, Helvetica, sans-serif;
+    color: gold;
     margin-top: 10px;
     text-align: center;
     font-weight: bold;
     font-size: 1.2rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(7, 7, 7, 0.9);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.show-message {
+    display: block;
 }
 
 
@@ -130,9 +172,18 @@ button:hover {
 }
 
 .addBrewery {
-    border-style: groove;
+    background-color: aliceblue;
+    border-radius: 8px;
+  border: 1px solid rgb(199, 170, 2);
+  /* Box shadow for a slight lift effect */
+  box-shadow: rgb(137, 147, 3) 2px 2px 2px 2px;
+  transition: transform 0.3s ease-in-out;
+
     padding: 2px 2px 15px 2px;
-    margin: 5px 0px 5px 0px;
+    margin: 10px 10px 10px 10px;
+    width: 25%;
+    margin-top: 50px;
+    
 }
 
 .addBeer {
@@ -141,10 +192,23 @@ button:hover {
     margin: 5px 0px 5px 0px;
 }
 
+.brewery-card:hover {
+  transform: translateY(-5px); /* Add a slight lift on hover */
+}
+
 .RegUsers {
-    border-style: groove;
+    background-color: aliceblue;
+    border-radius: 8px;
+  border: 1px solid rgb(199, 170, 2);
+  /* Box shadow for a slight lift effect */
+  box-shadow: rgb(137, 147, 3) 2px 2px 2px 2px;
+  transition: transform 0.3s ease-in-out;
+
     padding: 2px 2px 15px 2px;
-    margin: 5px 0px 5px 0px;
+    margin: 10px 10px 10px 10px;
+    width: 25%;
+    margin-bottom: 50px;
+    margin-top: 10px;
 }
 
 .UpdateUsers {

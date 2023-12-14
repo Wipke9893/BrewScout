@@ -65,11 +65,6 @@ public class BreweryController {
         }
     }
 
-
-    
-
-    @PreAuthorize("hasRole('USER')")
-
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/addBeer", method = RequestMethod.POST)
     public Beer addBeers(@Valid @RequestBody Beer beer) {

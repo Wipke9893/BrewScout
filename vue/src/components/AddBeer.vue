@@ -1,23 +1,37 @@
 <template>
     <div class="page">
-        <!-- <div class="makeBeer">
-        <div class="forms-container">
-        <div class="makeBeer">
+
+
+        <div class="submitBeer">
             <h1>Add Beer</h1>
             <form @submit.prevent="submitBeer">
-                <label for="name">/ Beer name \</label>
-                <input type="text" id="name" v-model="beer.name" maxlength="30" required>
-                <label for="type">/ Beer type \</label>
-                <input type="text" id="beerType" v-model="beer.type" maxlength="25" required>
-                <label for="Description">/ Description \</label>
-                <input type="text" id="Description" v-model="beer.description" maxlength="500" required>
-                <label for="ABV">/ Beer abv \</label>
-                <input type="text" id="beerAbv" v-model="beer.abv" maxlength="5" required>
-                <label for="image">/ Beer image \</label>
-                <input type="url" id="beerImage" v-model="beer.image" maxlength="500" required>
-                <button type="submit">Submit Add Beer</button>
+                <div class="submitBeername">
+                    <label for="name">Beer name</label>
+                    <input type="text" id="name" v-model="beer.name" maxlength="30" required>
+                </div>
+                <div class="submitBeertype">
+                    <label for="type">Beer type</label>
+                    <input type="text" id="beerType" v-model="beer.type" maxlength="25" required>
+                </div>
+                <div class="submitBeerdescription">
+                    <label for="Description">Description</label>
+                    <input type="text" id="Description" v-model="beer.description" maxlength="500" required>
+                </div>
+                <div class="submitBeerabv">
+                    <label for="ABV">Beer abv</label>
+                    <input type="text" id="beerAbv" v-model="beer.abv" maxlength="5" required>
+                </div>
+                <div class="submitBeerimage">
+                    <label for="image">Beer image</label>
+                    <input type="url" id="beerImage" v-model="beer.image" maxlength="500" required>
+                </div>
+                <button class="submitbeerbutton" type="submit">Submit Add Beer</button>
+                <div class="completion-message" :class="{ 'show-message': showMessage }">
+                    {{ messageText }}
+                </div>
             </form>
-        </div> -->
+        </div>
+
         <div class="updateBrewery">
             <h1>Update Brewery</h1>
             <form @submit.prevent="updateBrewery">
@@ -65,35 +79,56 @@
                     <label for="updateBreweryImage">Brewery Image</label>
                     <input id="updateBreweryImage" v-model="updateBrew.image" type="url">
                 </div>
-                <button type="submit">Submit Brewery</button>
+                <div class="completion-message" :class="{ 'show-message': showMessage }">
+                    {{ messageText }}
+                </div>
+                <button class="brewerybutton" type="submit">Submit Brewery</button>
             </form>
         </div>
+
+
         <div class="updateBeer">
-            <h1>Add or Update Beer</h1>
+            <h1>Update Beer</h1>
             <form @submit.prevent="updateBeer">
                 <div class="beers">
-                    <label for="beerList">Select a Beer if updating => </label>
+                    <label for="beerList">Select a Beer if updating</label>
                     <select id="beerList" v-model="upBeers">
                         <option v-for="beer in filteredBeers" :key="beer.beerId" :value="beer">
                             {{ beer.name }}</option>
                     </select>
                 </div>
-                <label for="name">Beer name </label>
-                <input type="text" id="name" v-model="upBeers.name" maxlength="30" required>
-                <label for="type">Beer type</label>
-                <input type="text" id="beerType" v-model="upBeers.type" maxlength="25" required>
-                <label for="Description">Description</label>
-                <input type="text" id="Description" v-model="upBeers.description" maxlength="500" required>
-                <label for="ABV">Beer abv</label>
-                <input type="text" id="beerAbv" v-model="upBeers.abv" maxlength="5" required>
-                <label for="image">Beer image</label>
-                <input type="url" id="beerImage" v-model="upBeers.image" maxlength="500">
-                <label for="status">Out of stock => </label>
-                <select id="status" v-model="upBeers">
-                    <option :key="true" :value="true">True</option>
-                    <option :key="false" :value="false">False</option>
-                </select>
-                <button type="submit">Submit Beer</button>
+                <!-- <div class="updatebeername">
+                    <label for="name">Beer name</label>
+                    <input type="text" id="name" v-model="upBeers.name" maxlength="30" required>
+                </div> -->
+                <div class="updatebeertype">
+                    <label for="type">Beer type</label>
+                    <input type="text" id="beerType" v-model="upBeers.type" maxlength="25" required>
+
+                </div>
+                <div class="updatebeerdescription">
+                    <label for="Description">Description</label>
+                    <input type="text" id="Description" v-model="upBeers.description" maxlength="500" required>
+                </div>
+                <div class="updatebeerabv">
+                    <label for="ABV">Beer abv</label>
+                    <input type="text" id="beerAbv" v-model="upBeers.abv" maxlength="5" required>
+                </div>
+                <div class="updatebeerimage">
+                    <label for="image">Beer image</label>
+                    <input type="url" id="beerImage" v-model="upBeers.image" maxlength="500">
+                </div>
+                <div class="updatebeeroutofstock">
+                    <label for="status">Out of stock</label>
+                    <select id="status" v-model="upBeers.status">
+                        <option :key="true" :value="true">True</option>
+                        <option :key="false" :value="false">False</option>
+                    </select>
+                </div>
+                <button class="beerbutton" type="submit">Submit Beer</button>
+                <div class="completion-message" :class="{ 'show-message': showMessage }">
+                    {{ messageText }}
+                </div>
             </form>
         </div>
     </div>
@@ -142,6 +177,8 @@ export default {
                 image: '',
                 status: ''
             },
+            showMessage: false,
+            messageText: '',
             beersList: [],
         }
     },
@@ -159,12 +196,14 @@ export default {
 
     methods: {
         submitBeer() {
+            this.beer.brewId = this.brewery.brew_id;
             BreweriesService
                 .insertBeer(this.beer)
                 .then(response => {
                     if (response.status === 201) {
-                        // Handle successful creation (e.g., update this.beer)
-                        this.beers.push(response.data); // Add the new ber to the local beers array
+                        this.beersList.push(response.data);
+                        this.showCompletionMessage("Beer added successfully!");
+
                     }
                 })
                 .catch(error => {
@@ -173,25 +212,31 @@ export default {
         },
 
         updateBrewery() {
+
             this.updateBrew.brew_id = this.brewery.brew_id;
             BreweriesService
                 .updateBrewery(this.updateBrew)
                 .then(response => {
                     if (response.status === 201) {
-                        // Handle successful creation (e.g., update this.beer)
-                        this.updateBrew.push(response.data); // Add the new ber to the local beers array
+                        this.showCompletionMessage("Brewery updated successfully!");
+                        this.updateBrew = response.data; // Assigning the updated data to updateBrew
+
                     }
                 })
                 .catch(error => {
                     console.error('Error updating brewery:', error);
                 });
-        }, updateBeer() {
+        },
+
+        updateBeer() {
+            this.upBeers.brewId = this.brewery.brew_id;
             if (this.upBeers.brewId > 0) {
                 this.upBeers.brewId = this.brewery.brew_id;
                 BreweriesService
                     .updateBeer(this.upBeers)
                     .then(response => {
                         if (response.status === 201) {
+                            this.showCompletionMessage("Beer updated successfully!");
                             this.upBeers.brewId = 0;
                             this.upBeers.name = '';
                             this.upBeers.type = '';
@@ -199,6 +244,7 @@ export default {
                             this.upBeers.abv = '';
                             this.upBeers.image = '';
                             this.upBeers.status = false;
+
                         }
                     })
                     .catch(error => {
@@ -216,43 +262,59 @@ export default {
                         console.error('Error submitting beer:', error);
                     });
             }
-        }
+        },
 
-    }
+        showCompletionMessage(message) {
+            this.showMessage = true;
+            this.messageText = message;
+
+            // Hide the message after 3 seconds (adjust duration as needed)
+            setTimeout(() => {
+                this.showMessage = false;
+            }, 3000);
+        }
+    },
+
 }
+
 
 </script>
 
 <style scoped>
+.beers {
+    margin-bottom: 1rem;
+}
+
+.completion-message {
+    font-family: Arial, Helvetica, sans-serif;
+    color: gold;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(17, 17, 17, 0.9);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+/* Show the completion message */
+.show-message {
+    display: block;
+}
+
 ul li {
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 10px;
     text-align: center;
 }
 
-.details {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: flex-end;
-    background-color: rgb(149, 147, 147);
-    padding-right: 2rem;
-    border: 2.5px solid rgb(199, 170, 2);
-    margin: 15px 0px 15px 0px;
-}
-
-.AddBeer {
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25%;
-    text-align: center;
-}
-
-button {
+.submitbeerbutton {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     font-size: 1.5rem;
@@ -265,7 +327,41 @@ button {
     background-color: rgb(159, 159, 5);
     margin: 0.5rem 1rem 0.5rem 1rem;
     width: 70%;
-    margin-top: 100px;
+    margin-left: 3rem;
+}
+
+.beerbutton {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: #050505;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: rgb(159, 159, 5);
+    margin: 0.5rem 1rem 0.5rem 1rem;
+    width: 70%;
+    margin-left: 3rem;
+
+}
+
+.brewerybutton {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: #050505;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: rgb(159, 159, 5);
+    margin: 0.5rem 1rem 0.5rem 1rem;
+    width: 70%;
+    margin-left: 3rem;
+
 }
 
 button:hover {
@@ -282,75 +378,44 @@ form {
     display: flex;
     flex-direction: column;
     width: 100%;
-    /* Adjusted width to occupy the entire space */
-    margin: 1rem auto 2rem;
-    /* Center the forms horizontally */
+    height: 50rem;
+
 }
 
 label {
     font-family: Arial, Helvetica, sans-serif;
     display: inline-block;
-    text-align: left;
     padding-left: 5px;
     width: 40%;
-    /* margin-bottom: 0.5rem; */
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(199, 170, 2);
-    ;
-    /* Reduced spacing between labels */
 }
 
 input {
     font-family: Arial, Helvetica, sans-serif;
-    padding-left: 5px;
-    width: 70%;
-    /* Adjusted input width */
-    height: 1.2rem;
-    /* Reduced input height */
-    margin-bottom: 1rem;
-    /* Adjusted spacing between inputs */
-}
-
-
-.beers {
-    margin-bottom: 20px;
-}
-
-select#status {
-    font-family: Arial, Helvetica, sans-serif;
-    padding-left: 5px;
-    width: 70%;
-    /* Adjusted input width */
-    height: 1.2rem;
-    /* Reduced input height */
-    margin-bottom: 1rem;
-}
-
-
-.updateBrewery {
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    margin: 1rem auto;
-    /* Center the forms horizontally */
-    border-radius: 1rem;
-    border: rgb(190, 197, 5) solid 1px;
-    box-shadow: rgb(137, 147, 3) 5px 5px 5px 10px;
-    background-color: rgb(201, 199, 186);
-    padding: 20px;
-    height: auto;
     width: 50%;
-    /* Adjusted width for better spacing */
+    height: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.page {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('../assets/img/homePage2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .updateBeer {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
     margin: 1rem auto;
     border-radius: 1rem;
@@ -358,18 +423,28 @@ select#status {
     box-shadow: rgb(137, 147, 3) 5px 5px 5px 10px;
     background-color: rgb(201, 199, 186);
     padding: 20px;
-    width: 50%;
-    font-family: Arial, Helvetica, sans-serif;
-    padding-left: 5px;
-    width: 40%;
-    /* Adjusted input width to make the boxes the same size */
-    height: 1.2rem;
-    /* Reduced input height */
-    margin-bottom: 1rem;
-    /* Adjusted spacing between inputs */
+    width: 350px;
+    height: 430px;
 }
 
-/* Set forms to be flex containers */
+.updateBrewery {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem auto;
+    border-radius: 1rem;
+    border: rgb(190, 197, 5) solid 1px;
+    box-shadow: rgb(137, 147, 3) 5px 5px 5px 10px;
+    background-color: rgb(201, 199, 186);
+    padding: 20px;
+    width: 350px;
+    /* Set a fixed width for each form */
+    height: 600px;
+    /* Set a fixed height for each form */
+    /* Set forms to be flex containers */
+}
+
 .page {
     font-family: Arial, Helvetica, sans-serif;
     background-image: url('../assets/img/homePage2.png');
@@ -399,14 +474,10 @@ select#status {
     gap: 20px;
 }
 
-/* Style for individual forms */
-.makeBeer,
-.updateBeer,
-.updateBrewery {
+.submitBeer {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
     margin: 1rem auto;
     border-radius: 1rem;
@@ -416,6 +487,7 @@ select#status {
     padding: 20px;
     width: 350px;
     /* Set a fixed width for each form */
-    height: 700px;
+    height: 350px;
     /* Set a fixed height for each form */
-}</style>
+}
+</style>

@@ -25,10 +25,10 @@ export default {
   flex-direction: column;
   display: inline-block;
   margin: 10px;
-  border: 1px solid rgb(199, 170, 2);
   padding: 10px;
   width: 200px;
   border-radius: 8px;
+  border: 1px solid rgb(199, 170, 2);
   /* Box shadow for a slight lift effect */
   box-shadow: rgb(137, 147, 3) 2px 2px 2px 2px;
   transition: transform 0.3s ease-in-out;

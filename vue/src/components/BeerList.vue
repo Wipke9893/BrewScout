@@ -97,16 +97,18 @@ export default {
 
 .beer-card {
   font-family: Arial, Helvetica, sans-serif;
-  border: 1px solid #ccc;
+  border: 1px solid #080808;
   padding: 10px;
   width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background-color: #ccc7c7;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), /* Existing shadow */
-              0px 0px 10px gold; /* Additional gold shadow */
+
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1),
+    /* Existing shadow */
+    0px 0px 10px gold;
+  /* Additional gold shadow */
 }
 
 .beer-image-container {
@@ -126,12 +128,14 @@ export default {
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
+  font-size: x-large;
 }
 
 h3 {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 5px 0;
+  color: gold;
 }
 
 ul {
@@ -142,5 +146,6 @@ ul {
 li {
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 5px;
+  color: white;
 }
 </style>

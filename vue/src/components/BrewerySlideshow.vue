@@ -49,23 +49,34 @@ export default {
   align-items: center;
   height: 40rem;
   overflow: hidden;
-  animation: fadeAnimation 9s ease-in-out infinite; /* Apply animation to the whole slideshow */
+  animation: fadeAnimation 9s ease-in-out infinite;
+  /* Apply animation to the whole slideshow */
 }
 
 .fade-image {
-  animation: fadeAnimation 9s linear infinite; /* Apply fade animation */
-  max-width: 100%; /* Use max-width instead of fixed width */
-  max-height: 100%; /* Use max-height instead of fixed height */
-  object-fit: contain; /* Maintain aspect ratio and fit the entire image within the container */
+  animation: fadeAnimation 9s linear infinite;
+  /* Apply fade animation */
+  max-width: 100%;
+  /* Use max-width instead of fixed width */
+  max-height: 100%;
+  /* Use max-height instead of fixed height */
+  object-fit: contain;
+  /* Maintain aspect ratio and fit the entire image within the container */
 }
 
 /* CSS Animation */
 @keyframes fadeAnimation {
-  0%, 100% {
-    opacity: 0; /* Initial and final opacity set to 0 */
+
+  0%,
+  100% {
+    opacity: 0;
+    /* Initial and final opacity set to 0 */
   }
-  25%, 75% {
-    opacity: 1; /* Middle of the animation with opacity 1 */
+
+  25%,
+  75% {
+    opacity: 1;
+    /* Middle of the animation with opacity 1 */
   }
 }
 </style>

@@ -114,8 +114,8 @@ li {
     flex-direction: column;
     align-items: center;
     align-content: flex-end;
-    background-color: whitesmoke;
-    padding-right: 1rem;
+    background-color: rgb(202, 194, 194);
+    padding-right: 2rem;
     border: 2.5px solid rgb(199, 170, 2);
     margin: 15px 0px 15px 0px;
 }

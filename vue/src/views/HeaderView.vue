@@ -28,7 +28,7 @@ export default {
     }
   },
   created() {
-    if (this.$store.state.user.id == 3) {
+    if (this.$store.state.user.id == 3 || this.$store.state.user.id == 4) {
       this.showAdmin = true;
     } else {
       this.showAdmin = false;
@@ -42,7 +42,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-image: url('C:\Users\Student\workspace\team-brewery-capstone\vue\src\assets\img\header2.png');
+  /* background-image: url('C:..\assets\img\scoutImage.png'); */
+  background-image: url(..\assets\img\header2.png);
   /* Replace 'your-image.jpg' with the actual image file name */
   background-size: cover;
   /* Adjust to your needs, 'cover' makes the image cover the entire element */
@@ -50,7 +51,7 @@ export default {
   /* Prevent repeating the image */
   background-position: center center;
   /* Center the background image */
-  padding: 15px;
+  padding: 1px;
   height: 20rem;
 }
 
@@ -62,10 +63,14 @@ export default {
   justify-content: center;
   flex-grow: 1;
   text-align: center;
+  margin-bottom: 100px;
+  margin-left: 50px;
 }
 
 .logo {
-  max-width: 15rem;
+  max-width: 10rem;
+  margin-bottom: 158px;
+  margin-left: 10px;
 }
 
 #banner {
@@ -78,7 +83,7 @@ export default {
   /* font-family: Arial, Helvetica, sans-serif; */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   margin-left: 100px;
   color: rgb(255, 255, 255);
   text-shadow: black 2px 2px 2px;
@@ -93,7 +98,6 @@ p {
   margin: 0;
   font-size: 3rem;
 }
-
 .nav {
   display: flex;
   gap: 10px;
@@ -103,10 +107,12 @@ p {
 .nav-link {
   text-decoration: none;
   color: gold;
-  padding: 10px 20px;
+  padding: 15px 30px; /* Increase padding for a bigger button */
   border-radius: 25px;
   transition: background-color 0.3s, color 0.3s;
   background-color: rgb(59, 59, 59);
+  margin-top: 30px;
+  font-size: 1.2rem; /* Increase font size for larger text */
 }
 
 .nav-link:hover {
@@ -117,5 +123,6 @@ p {
 .nav-link:active {
   transform: scale(0.9);
 }
+
 </style>
   

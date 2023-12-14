@@ -6,6 +6,7 @@
         <BrewerySlideshow :breweries="sixRandom" />
       </div>
       <div class="beer-section">
+        <h1>Featured Beers</h1>
         <BeerSlideshow :beers="featuredBeers" />
       </div>
     </div>
@@ -99,7 +100,9 @@ export default {
 .beer-section h1 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 2.5rem;
-  margin-bottom: 20px;
+  color: whitesmoke;
+  text-shadow: black 2px 2px 2px;
+
 }
 
 .slideshow-container {
@@ -112,7 +115,7 @@ export default {
   /* Set parent container to relative positioning */
   z-index: 1;
   /* Ensure the slideshow is above other elements */
-  height: 600px;
+
   /* Adjust the height of the slideshow area */
   margin-bottom: 50px;
 }
