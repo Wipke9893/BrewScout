@@ -20,7 +20,7 @@ export default {
 <style scoped>
 /* Styling for brewery cards */
 .brewery-card {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'IM Fell English', serif;
   display: flex;
   flex-direction: column;
   display: inline-block;

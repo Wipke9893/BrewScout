@@ -98,7 +98,7 @@ export default {
 
 .featured-section h1,
 .beer-section h1 {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'IM Fell English', serif;
   font-size: 2.5rem;
   color: whitesmoke;
   text-shadow: black 2px 2px 2px;
@@ -135,7 +135,7 @@ export default {
 }
 
 .about-box {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'IM Fell English', serif;
   background-color: #F5F5F5;
   padding: 20px;
   border: 1px solid #ddd;

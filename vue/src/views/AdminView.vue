@@ -168,7 +168,6 @@ export default {
 button:hover {
     background-color: rgb(137, 157, 4);
     color: rgb(238, 211, 4);
-
 }
 
 .addBrewery {

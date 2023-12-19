@@ -107,6 +107,10 @@ export default {
   height: 52rem;
   text-align: center;
   background-image: url('../assets/img/homePage2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
 }
 
 .form-input-group {

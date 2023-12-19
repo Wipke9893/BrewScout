@@ -55,7 +55,7 @@ export default {
   
 <style scoped>
 h1 {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'IM Fell English', serif;
   color: white;
   text-align: left;
   font-weight: bolder;
@@ -72,7 +72,7 @@ h1 {
 
 
 .list {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'IM Fell English', serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -112,7 +112,7 @@ h1 {
 .brewery-card p {
   font-size: 1rem;
   color: #666;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'IM Fell English', serif;
 }
 
 /* Adjust the styling based on your design preferences */

@@ -74,7 +74,7 @@ export default {
             },
             reviews: [],
             beer: {
-                beerId: '',
+                beer_id: '',
                 brewId: '',
                 name: '',
                 type: '',
@@ -85,7 +85,7 @@ export default {
             },
             beersList: [],
             oneBeer: {
-                beerId: '',
+                beer_id: '',
                 brewId: '',
                 name: '',
                 type: '',
@@ -108,10 +108,10 @@ export default {
             type: Number,
             required: false
         },
-        beer_id: {
-            type: Number,
-            required: false
-        },
+        // beer_id: {
+        //     type: Number,
+        //     required: false
+        // },
     },
 
     computed: {

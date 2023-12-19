@@ -3,7 +3,6 @@
     <div class="content">
       <div class="brand">
         <h1>BrewScout</h1>
-        <p>Your go-to companion for exploring and enjoying local breweries and their delightful array of beers.</p>
       </div>
       <div class="nav">
         <router-link v-bind:to="{ name: 'home' }" class="nav-link">Home</router-link>
@@ -42,8 +41,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background-image: url('C:..\assets\img\scoutImage.png'); */
-  background-image: url(..\assets\img\header2.png);
+  background-image: url('C:..\assets\img\scoutImage.png');
+  /* background-image: url(..\assets\img\header2.png); */
   /* Replace 'your-image.jpg' with the actual image file name */
   background-size: cover;
   /* Adjust to your needs, 'cover' makes the image cover the entire element */
@@ -80,49 +79,50 @@ export default {
 }
 
 .brand {
-  /* font-family: Arial, Helvetica, sans-serif; */
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'IM Fell English', serif;
   text-align: center;
   margin-bottom: 10px;
   margin-left: 100px;
-  color: rgb(255, 255, 255);
-  text-shadow: black 2px 2px 2px;
+  color: gold;
+  text-shadow: rgb(66, 66, 66) 8px 5px 5px;
+  display: inline-block; /* To allow padding and border */
+  padding: 10px 20px; /* Add padding */
+  font-size: 6rem; /* Increase font size */
 }
 
 h1 {
+  padding: 10px 10px; /* Add padding */
   margin-bottom: 5px;
-  font-size: 6rem;
-}
-
-p {
-  margin: 0;
-  font-size: 3rem;
+  font-size: 8rem;
 }
 .nav {
+  font-family: 'IM Fell English', serif;
   display: flex;
   gap: 10px;
   margin-left: 100px;
 }
-
 .nav-link {
+  font-family: 'IM Fell English', serif;
   text-decoration: none;
   color: gold;
   padding: 15px 30px; /* Increase padding for a bigger button */
   border-radius: 25px;
-  transition: background-color 0.3s, color 0.3s;
+  transition: all 0.3s; /* Simplified transition property */
   background-color: rgb(59, 59, 59);
   margin-top: 30px;
   font-size: 1.2rem; /* Increase font size for larger text */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add box shadow for depth */
 }
 
 .nav-link:hover {
   background-color: #333;
-  transform: scale(1.1);
+  transform: translateY(-3px); /* Move the button slightly up */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Enhance box shadow on hover */
 }
 
 .nav-link:active {
-  transform: scale(0.9);
+  transform: translateY(1px); /* Slightly push the button down on click */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Add shadow on active */
 }
 
 </style>
-  
